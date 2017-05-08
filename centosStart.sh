@@ -65,6 +65,7 @@ do
     if [ ${k} == mariadb ]; then
         systemctl start mariadb.service;
         # echo -e '\n\n\nPassword\nPassword\n\n\n\n' | mysql_secure_installation
+    fi
     if [ ${k} == nginx ]; then
         systemctl enable php-fpm;
         systemctl enable nginx;
@@ -74,8 +75,10 @@ do
         mkdir /var/log/nginx/threecooked.com;
         systemctl start php-fpm;
         systemctl start nginx;
+    fi
     if [ ${k} == sshd ]; then
         firewall-cmd --zone=public --remove-service=ssh --permanent;
+    fi
     if [ ${k} == fail2ban ]; then
         systemctl enable fail2ban;
         cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local;
