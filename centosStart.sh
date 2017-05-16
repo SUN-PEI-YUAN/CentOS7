@@ -133,6 +133,7 @@ openssl dhparam -out dhparam.pem 2048
 # 而為了方便起見，可以將這個更新指令寫在 /opt/letsencrypt/renew.sh 指令稿中：
 echo -e "/opt/letsencrypt/certbot-auto renew --quiet --no-self-upgrade --post-hook 'systemctl restart nginx'" > /opt/letsencrypt/renew.sh
 
+# 用crontab自動更新
 crontab -e 
 # 30 2 * * 0 /opt/letsencrypt/renew.sh
 (crontab -l; 30 2 * * 0 /opt/letsencrypt/renew.sh) |uniq - | crontab -
